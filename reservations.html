@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hot Restaurant Reservations</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<div class="container">
+    <div class="jumbotron">
+    <div class="text-center">
+      <h1>Hot Restaurant</h1>
+      <h3>Make Your Reservation!</h3>
+      <hr>
+      <a href="/tables"><button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-plus"></span>View Tables</button></a>
+      <a href="/"><button type="button" class="btn btn-default btn-lg">Home</button></a>      
+    </div>
+    </div>
+    <div class="row">
+
+      <div class="col-lg-12">
+		  <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Table Reservation</strong></h3>
+          </div>
+          <div class="panel-body">
+            <form method="POST" role="form">
+
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+
+              <div class="form-group">
+                <label for="number">Number</label>
+                <input type="text" class="form-control" id="number">
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email">
+              </div>
+
+              <div class="form-group">
+                <label for="id">Unique ID</label>
+                <input type="text" class="form-control" id="id">
+              </div>
+
+            </form>
+            <br>
+            <div class="text-left">
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="glyphicon glyphicon-fire"></span>Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+		<div class="container">
+	    	<p>Control Panel</p>
+	        <p><a href="#" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
+	    </div>
+	</footer>
+  </div>
+    <script type="text/javascript">
+    $("#add-btn").on("click", function(event) {
+      event.preventDefault();
+      var newReservation = {
+        name: $("#name").val().trim(),
+        number: $("#number").val().trim(),
+        email: $("#email").val().trim(),
+        id: $("#id").val().trim()
+      };
+
+      // Question: What does this code do??
+      $.post("/api/new", newReservation)
+      .done(function(data) {
+        console.log(data);
+        alert("Adding table...");
+      });
+    });
+  </script>
+</body>
+</html>
