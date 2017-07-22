@@ -74,6 +74,7 @@
         email: $("#email").val().trim(),
         id: $("#id").val().trim()
       };
+      alert("Thanks! See you at our HOT restaurant")
 
       // Question: What does this code do??
       $.post("/api/new", newReservation)
@@ -81,7 +82,28 @@
         console.log(data);
         alert("Adding table...");
       });
+      $("#name").val("");
+      $("#number").val("");
+      $("#email").val("");
+      $("#id").val("");
     });
+
+
+	    function clearTable(){
+
+			var currentURL = window.location.origin;
+			$.get("/api/clear", function(data) {
+
+			});
+		};
+
+		$("#clear").on('click', function(){
+			alert("Clearing...");
+			clearTable();
+
+			// Refresh the page after data is cleared
+			location.reload();
+		});    
   </script>
 </body>
 </html>

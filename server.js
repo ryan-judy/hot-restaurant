@@ -25,6 +25,11 @@ app.get("/tables", function(req, res) {
   res.sendFile(path.join(__dirname, "tables.html"));
 });
 
+app.get("/api/clear", function(req, res) {
+	reservations = [];
+	waitlist = [];
+});
+
 app.get("/api/tables", function(req, res) {
   var chosen = req.params.reservations;
 

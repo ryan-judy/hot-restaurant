@@ -68,9 +68,25 @@
 	          		var waitName = newWaitTable.append(data[i].name);
 	          		$("#waitlistSection").append(waitName);
 	        	}
-	        
-	       
-	      });
+	      	});
+
+	        function clearTable(){
+
+				var currentURL = window.location.origin;
+				$.get("/api/clear", function(data) {
+
+				});
+			};
+
+			$("#clear").on('click', function(){
+				alert("Clearing...");
+				clearTable();
+
+				// Refresh the page after data is cleared
+				location.reload();
+			});
+
+
 	</script>
 </body>
 </html>
